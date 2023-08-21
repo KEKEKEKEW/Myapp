@@ -1,0 +1,56 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>SkeletonAPP</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+<section>
+  <h2 class="ion-text-center">Bienvenido!</h2>
+  <h4 *ngIf="currentUser !== null">Usuario: {{currentUser}}</h4>
+</section>
+<section>
+  <form class="ion-margin-top ion-padding-top" [formGroup]="welcomeForm" (ngSubmit)="onUserInfo()">
+    <ion-grid>
+      <ion-row justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div class="text-center">
+            <h3 class="ion-text-center"><strong>Informacion adicional</strong></h3>
+          </div>
+          <div>
+            <ion-item lines="none">
+              <ion-input label="Nombre" formControlName="nameWelcome" placeholder="Ingrese su nombre" type="text" required></ion-input>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-input label="Apellido" formControlName="lastNameWelcome" placeholder="Ingrese su apellido" type="text" required></ion-input>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-select label="Nivel de educacion" placeholder="Ingrese su nivel de educacion" formControlName="edLvlWelcome">
+                <ion-select-option value="postgrado">PostGrado</ion-select-option>
+                <ion-select-option value="pregrado">PreGrado</ion-select-option>
+                <ion-select-option value="universitaria">Universitaria</ion-select-option>
+                <ion-select-option value="media">Media</ion-select-option>
+                <ion-select-option value="basica">Basica</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item lines="none">
+              <!-- <ion-input label="Fecha de nacimiento" formControlName="fecNacWelcome" placeholder="Ingrese su nivel de educacion" type="text" required></ion-input> -->
+              <ion-label>Fecha de nacimiento</ion-label>
+              <input label="Fecha de nacimiento" formControlName="fecNacWelcome" placeholder="Ingrese su nivel de educacion" type="date">
+            </ion-item>
+          </div>
+          <div class="ion-margin-top ion-padding-top">
+              <ion-button type="button" class="" color="secondary" size="" expand="block">Limpiar</ion-button>
+              <ion-button type="submit" class="" color="secondary" size="" expand="block">Mostrar</ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</section>
+<footer>
+  <ion-toolbar>
+    <ion-title>App desarrollado por: Mati</ion-title>
+  </ion-toolbar>
+</footer>
+</ion-content>

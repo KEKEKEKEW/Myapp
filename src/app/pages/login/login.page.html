@@ -1,0 +1,64 @@
+<ion-header class="ion-margin-top" [translucent]="true">
+  <!-- <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar> -->
+  <img src="../../../assets/images/skeletonBannerDark.png" alt="">
+  <h3 class="ion-text-center">Aquí comienza todo</h3>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!--  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">login</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <br>
+  <ion-card>
+    <ion-card-content>
+      <br>
+      <ion-label> Usuario </ion-label>
+      <ion-input type="usuario" placeholder="Ingrese su Usuario"></ion-input>
+      <br>
+      <ion-label> Contraseña </ion-label>
+      <ion-input type="password" placeholder="Ingrese su Contraseña"></ion-input>
+      <br>
+      <ion-button> Iniciar </ion-button>
+    </ion-card-content>
+  </ion-card> -->
+  <form class="ion-margin-top ion-padding-top" [formGroup]="loginForm" (ngSubmit)="onUserLogin()">
+    <ion-grid>
+      <ion-row justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div class="text-center">
+            <h3 class="ion-text-center"><strong>Inicio de sesión</strong></h3>
+          </div>
+          <div>
+            <ion-item lines="none">
+              <ion-input formControlName="loginUser" placeholder="usuario@tucorreo.cl" type="text"
+                required></ion-input>
+            </ion-item>
+            <ion-item class="ion-margin-top" lines="none">
+              <ion-input formControlName="loginPassword" [type]="isTextFieldType ? 'text' : 'password'"
+                placeholder="Contraseña" required></ion-input>
+              <div id="eyeToggle" color="primary" (click)="togglePasswordFieldType()">
+                <ion-icon [name]="isTextFieldType ? 'eye-off' : 'eye'"></ion-icon>
+              </div>
+            </ion-item>
+          </div>
+          <div class="ion-margin-top ion-padding-top">
+              <ion-button type="submit" class="m-button" color="secondary" size="large" expand="block">Ingresar</ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-margin-top ion-padding-top">
+        <ion-col>
+          <div class="ion-text-center">
+            <div><a class="hyperlink" [routerLink]="['/faq']">Olvidé mi contraseña</a></div>
+            <div><a class="hyperlink" [routerLink]="['/registro']">Crea tu cuenta gratis!</a></div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>
