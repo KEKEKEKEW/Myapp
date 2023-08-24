@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AlertController } from '@ionic/angular';
+import { AlertController, Animation, AnimationController, IonCard } from '@ionic/angular';
 
 
 @Component({
@@ -8,20 +8,48 @@ import { AlertController } from '@ionic/angular';
   templateUrl: './inicio.page.html',
   styleUrls: ['./inicio.page.scss'],
 })
+
 export class InicioPage implements OnInit {
+  @ViewChild(IonCard, { read: ElementRef }) card!: ElementRef<HTMLIonCardElement>;
   currentUser: string | null = null;
   welcomeForm!: FormGroup;
+  private animation!: Animation;
 
-  constructor(private formBuilder:FormBuilder, private alertCtrl:AlertController) { }
+  constructor(private formBuilder:FormBuilder, private alertCtrl:AlertController, private animationCtrl: AnimationController) {
+    // const animation: Animation = this.animationCtrl.create()
+
+   }
 
   async ngOnInit() {
-    this.currentUser = await this.loadCurrentUser();
     this.welcomeForm = this.formBuilder.group({
       nombre: new FormControl('', [Validators.required]),
       apellido: new FormControl('', [Validators.required]),
       nivelEd: new FormControl('', [Validators.required]),
       fecNac: new FormControl('', [Validators.required]),
     });
+    this.currentUser = await this.loadCurrentUser();
+  }
+
+  ngAfterViewInit() {
+    this.animation = this.animationCtrl
+      .create()
+      .addElement(this.card.nativeElement)
+      .duration(1500)
+      .iterations(Infinity)
+      .fromTo('transform', 'translateX(0px)', 'translateX(100px)')
+      .fromTo('opacity', '1', '0.2');
+  }
+
+  play() {
+    this.animation.play();
+  }
+
+  pause() {
+    this.animation.pause();
+  }
+
+  stop() {
+    this.animation.stop();
   }
   
   /**
@@ -37,6 +65,8 @@ export class InicioPage implements OnInit {
   }
 
   onUserInfo(){
+    console.log('info')
+    this.alertPresent('Mensaje')
   }
 
 

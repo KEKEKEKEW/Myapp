@@ -28,14 +28,14 @@ export class LoginPage implements OnInit {
     this.checkLength();
   }
 
-  async alertPresent(header:string,message:string){
+  async alertPresent(header:string,message:string, btnMessage:string){
     const alert = await this.alertCtrl.create({
       header:header,
       message:message,
-      buttons:['OK'],
+      // buttons:['OK'],
+      buttons:[btnMessage],
     });
     alert.present();
-    this.loginForm.setValue
   }
 
   togglePasswordFieldType(){//Ojito de passwd
@@ -49,11 +49,11 @@ export class LoginPage implements OnInit {
  */
   onUserLogin(){
     if(this.loginForm.value.loginUser.length > 2 && this.loginForm.value.loginUser.length < 9 && this.loginForm.value.loginPassword.length === 4){
-      localStorage.setItem('currentUser', this.loginForm.value.loginUser);
+      localStorage.setItem('currentUser', this.loginForm.value.loginUser); // me guarda el nombre de usuario
       this.router.navigateByUrl('inicio');
     }
     else{
-      this.alertPresent('Login fallido','Intente nuevamente');
+      this.alertPresent('Login fallido','Intente nuevamente', 'OK');
     }
   }
 
@@ -63,9 +63,8 @@ export class LoginPage implements OnInit {
  */
   checkLength(){
     this.loginForm.get('loginPassword')?.valueChanges.subscribe((loginPassword) => {
-      console.log(loginPassword);
-      if(loginPassword.length > 4 && loginPassword.length < 4){
-        //evento on everyinput si la pass.length es != 4
+      if(loginPassword.length > 3 && loginPassword.length < 5){
+        //impedir mas input
       }
     });
   }
