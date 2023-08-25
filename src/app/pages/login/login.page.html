@@ -35,11 +35,11 @@
           </div>
           <div>
             <ion-item lines="none">
-              <ion-input formControlName="loginUser" placeholder="usuario" type="text" required>
+              <ion-input maxlength="8" formControlName="loginUser" placeholder="Usuario" type="text" required>
               </ion-input>
             </ion-item>
             <ion-item class="ion-margin-top" lines="none">
-              <ion-input formControlName="loginPassword" [type]="isTextFieldType ? 'text' : 'password'"
+              <ion-input maxlength="4" formControlName="loginPassword" [type]="isTextFieldType ? 'text' : 'password'"
                 placeholder="Contraseña" required></ion-input>
               <div id="eyeToggle" color="primary" (click)="togglePasswordFieldType()">
                 <ion-icon [name]="isTextFieldType ? 'eye-off' : 'eye'"></ion-icon>

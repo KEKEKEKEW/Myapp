@@ -18,10 +18,10 @@
             <h3 class="ion-text-center"><strong>Informacion adicional</strong></h3>
           </div>
           <div>
-            <ion-item lines="none">
+            <ion-item lines="none" [@inputAnimation]="inputAnimationSettings">
               <ion-input label="Nombre" formControlName="nombre" placeholder="Ingrese su nombre" type="text" required></ion-input>
             </ion-item>
-            <ion-item lines="none">
+            <ion-item lines="none" [@inputAnimation]="inputAnimationSettings">
               <ion-input label="Apellido" formControlName="apellido" placeholder="Ingrese su apellido" type="text" required></ion-input>
             </ion-item>
             <ion-item lines="none">
@@ -35,18 +35,18 @@
             </ion-item>
             <ion-item lines="none">
               <ion-label>Fecha de nacimiento</ion-label>
-              <!-- <input label="Fecha de nacimiento" formControlName="fecNac" placeholder="Ingrese su nivel de educacion" type="date"> -->
-              <mat-form-field>
+              <input label="Fecha de nacimiento" formControlName="fecNac" placeholder="Ingrese su nivel de educacion" type="date">
+              <!-- <mat-form-field>
                 <mat-label>Seleccionar fecha</mat-label>
                 <input matInput [matDatepicker]="picker">
                 <mat-hint>MM/DD/YYYY</mat-hint>
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
-              </mat-form-field>
+              </mat-form-field> -->
             </ion-item>
           </div>
           <div class="ion-margin-top ion-padding-top">
-              <ion-button type="reset" value="Borrar" class="" color="secondary" size="" expand="block">Limpiar</ion-button>
+              <ion-button (click)="animacioninput()" type="reset" value="Borrar" class="" color="secondary" size="" expand="block">Limpiar</ion-button>
               <ion-button type="submit" class="" color="secondary" size="" expand="block">Mostrar</ion-button>
           </div>
         </ion-col>

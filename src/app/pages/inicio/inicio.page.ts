@@ -1,12 +1,23 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertController, Animation, AnimationController, IonCard } from '@ionic/angular';
+import { trigger, state, style, animate, transition  } from '@angular/animations'; 
 
 
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.page.html',
   styleUrls: ['./inicio.page.scss'],
+  animations:[
+    trigger('inputAnimation', [
+      state('slide', style({
+        transform: 'translateX(100%)'
+      })),
+      transition('* => slide',[
+        animate('1s')
+      ])
+    ]),
+  ],
 })
 
 export class InicioPage implements OnInit {
@@ -14,6 +25,7 @@ export class InicioPage implements OnInit {
   currentUser: string | null = null;
   welcomeForm!: FormGroup;
   private animation!: Animation;
+  inputAnimationSettings = {};
 
   constructor(private formBuilder:FormBuilder, private alertCtrl:AlertController, private animationCtrl: AnimationController) {
     // const animation: Animation = this.animationCtrl.create()
@@ -85,4 +97,14 @@ export class InicioPage implements OnInit {
     });
     alert.present();
   }
+
+  animacioninput(){
+    this.inputAnimationSettings = 'slide';
+
+    setTimeout(() =>{ this.inputAnimationSettings = ''
+    }, 1000);
+
+  }
+
 }
+
